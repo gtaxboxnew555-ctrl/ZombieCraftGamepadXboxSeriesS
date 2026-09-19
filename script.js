@@ -1080,8 +1080,8 @@ if (gamepad) {
     let leftX = gamepad.axes[0];
 let leftY = gamepad.axes[1];
 
-if (Math.abs(leftX) < 0.025) leftX = 0;
-if (Math.abs(leftY) < 0.025) leftY = 0;
+if (Math.abs(leftX) < 0.02) leftX = 0;
+if (Math.abs(leftY) < 0.02) leftY = 0;
 
     camera.position.x +=
         Math.cos(yaw) * leftX * 0.1;
@@ -1100,8 +1100,8 @@ if (Math.abs(leftY) < 0.025) leftY = 0;
     let rightX = gamepad.axes[2];
 let rightY = gamepad.axes[3];
 
-if (Math.abs(rightX) < 0.025) rightX = 0;
-if (Math.abs(rightY) < 0.025) rightY = 0;
+if (Math.abs(rightX) < 0.02) rightX = 0;
+if (Math.abs(rightY) < 0.02) rightY = 0;
 
 yaw -= rightX * 0.05;
 pitch -= rightY * 0.05;
