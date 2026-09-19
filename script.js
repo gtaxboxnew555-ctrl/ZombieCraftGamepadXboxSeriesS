@@ -1117,6 +1117,10 @@ pitch -= rightY * 0.05;
     console.log(gamepad.axes[0]);
 
 }
+const pads = navigator.getGamepads();
+
+gamepad = pads[0] || null;
+
     
 
    if (flyMode) {
