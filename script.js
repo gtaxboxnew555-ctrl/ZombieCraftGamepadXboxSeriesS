@@ -1079,7 +1079,7 @@ const oldZ = camera.position.z;
         camera.position.x += Math.cos(yaw) * speed;
         camera.position.z -= Math.sin(yaw) * speed;
     }
-if (gamepad) {
+/*if (gamepad) {
 
     let leftX = gamepad.axes[0];
 let leftY = gamepad.axes[1];
@@ -1115,7 +1115,7 @@ pitch -= rightY * 0.05;
         Math.min(1.5, pitch)
     );
 
-}
+}*/
    if (gamepad) {
 
     console.log(gamepad.axes[0]);
