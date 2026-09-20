@@ -7,6 +7,16 @@ let kills = 0;
 const bullets = [];
 let wood = 0;
 let stone = 0;
+let carbon = 0;
+let hydrogen = 0;
+let oxygen = 0;
+
+let silicon = 0;
+let iron = 0;
+let aluminum = 0;
+
+let refineryBuilt = false;
+
 let inventoryOpen = false;
 let craftingOpen = false;
 let hasAxe = false;
@@ -473,10 +483,6 @@ camera.position.y = 2;
 
 const keys = {};
 
-
-
-
-
 document.addEventListener("keydown", (e) => {
     keys[e.key.toLowerCase()] = true;
 });
@@ -484,9 +490,6 @@ document.addEventListener("keydown", (e) => {
 document.addEventListener("keyup", (e) => {
     keys[e.key.toLowerCase()] = false;
 });
-
-
-
 document.addEventListener("keydown", (e) => {
 
     if (e.repeat) return;
@@ -499,7 +502,6 @@ document.addEventListener("keydown", (e) => {
     }
 
 });
-
 document.addEventListener("keydown", (e) => {
 
     if (e.key.toLowerCase() !== "e") return;
@@ -538,13 +540,6 @@ document.addEventListener("keydown", (e) => {
     }
 
 });
-
-
-
-
-
-
-
 document.addEventListener("keydown", (e) => {
 
     if (e.key.toLowerCase() === "e") {
@@ -726,20 +721,7 @@ document.getElementById("slot1").textContent =
 
 });
 
-document.addEventListener("keydown", (e) => {
 
-    if (e.key.toLowerCase() === "b") {
-
-        buildMode = !buildMode;
-
-        (
-            buildMode
-            ? "Build Mode ON"
-            : "Build Mode OFF"
-        );
-    }
-
-});
 
 document.addEventListener("click", () => {
 
@@ -924,6 +906,39 @@ document.addEventListener("keydown", (e) => {
 
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.addEventListener("keydown", (e) => {
 
     if (e.key.toLowerCase() === "g") {
@@ -938,7 +953,6 @@ document.addEventListener("keydown", (e) => {
     }
 
 });
-
 document.addEventListener("keydown", (e) => {
 
     if (e.key.toLowerCase() === "r") {
@@ -1000,7 +1014,6 @@ console.log(block.userData.blockType);
     }
 
 });
-
 document.addEventListener("keydown", (e) => {
 
     if (e.key === "2") {
@@ -1016,6 +1029,20 @@ document.addEventListener("keydown", (e) => {
     }
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 document.addEventListener("keydown", (e) => {
 
@@ -1035,9 +1062,6 @@ document.getElementById("slot1").textContent =
     }
 
 });
-
-
-
 document.addEventListener("keydown", (e) => {
 
     if (e.key.toLowerCase() === "v") {
@@ -1050,8 +1074,108 @@ document.addEventListener("keydown", (e) => {
     }
 
 });
+document.addEventListener("keydown", (e) => {
 
+    if (e.key.toLowerCase() === "m") {
 
+        if (
+            !refineryBuilt &&
+            wood >= 20 &&
+            stone >= 10
+        ) {
+
+            wood -= 20;
+            stone -= 10;
+
+            refineryBuilt = true;
+
+            document.getElementById(
+                "refinery"
+            ).textContent =
+                "Refinery: Built";
+
+            console.log(
+                "Refinery Built"
+            );
+
+        }
+
+    }
+
+});
+document.addEventListener("keydown", (e) => {
+
+    if (e.key.toLowerCase() === "j") {
+
+        if (
+            refineryBuilt &&
+            wood >= 1
+        ) {
+
+            wood--;
+
+            carbon += 5;
+            hydrogen += 3;
+            oxygen += 2;
+
+            updateElements();
+
+            console.log(
+                "Wood Refined"
+            );
+
+        }
+
+    }
+
+});
+document.addEventListener("keydown", (e) => {
+
+    if (e.key.toLowerCase() === "k") {
+
+        if (
+            refineryBuilt &&
+            stone >= 1
+        ) {
+
+            stone--;
+
+            silicon += 2;
+            iron += 1;
+            aluminum += 1;
+
+            updateElements();
+
+            console.log(
+                "Stone Refined"
+            );
+
+        }
+
+    }
+
+});
+document.addEventListener("keydown", (e) => {
+
+    if (e.key.toLowerCase() === "p") {
+
+        saveGame();
+        alert("GAME SAVED");
+
+    }
+
+});
+document.addEventListener("keydown", (e) => {
+
+    if (e.key.toLowerCase() === "o") {
+
+        localStorage.removeItem("survivalSave");
+
+        console.log("Save Deleted");
+
+    }
+
+});
 
 
 function animate() {
@@ -1562,33 +1686,39 @@ rain.position.z = camera.position.z;
 
 
 
-    renderer.render(scene, camera);
+    
+
+
+
+
+
+
+
+
+
+
+
+renderer.render(scene, camera);
 }
+
+
+
+
 
 document.addEventListener("keydown", (e) => {
 
     if (e.key.toLowerCase() === "b") {
 
-        selectedBlock = "wood";
+        buildMode = !buildMode;
 
-        console.log("Wood Block Selected");
-
+        (
+            buildMode
+            ? "Build Mode ON"
+            : "Build Mode OFF"
+        );
     }
 
 });
-
-document.addEventListener("keydown", (e) => {
-
-    if (e.key.toLowerCase() === "v") {
-
-        selectedBlock = "stone";
-
-        console.log("Stone Block Selected");
-
-    }
-
-});
-
 document.addEventListener("keydown", (e) => {
 
     if (e.key === " " && onGround && !flyMode) {
@@ -1600,28 +1730,36 @@ document.addEventListener("keydown", (e) => {
 
 });
 
-document.addEventListener("keydown", (e) => {
 
-    if (e.key.toLowerCase() === "p") {
 
-        saveGame();
-        alert("GAME SAVED");
 
-    }
 
-});
 
-document.addEventListener("keydown", (e) => {
 
-    if (e.key.toLowerCase() === "o") {
 
-        localStorage.removeItem("survivalSave");
 
-        console.log("Save Deleted");
 
-    }
 
-});
+
+
+
+
+
+function updateElements() {
+
+    document.getElementById(
+        "elements"
+    ).textContent =
+
+        "C: " + carbon +
+        " | H: " + hydrogen +
+        " | O: " + oxygen +
+        " | Si: " + silicon +
+        " | Fe: " + iron +
+        " | Al: " + aluminum;
+
+}
+
 
 function saveGame() {
 
