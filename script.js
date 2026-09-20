@@ -1,5 +1,4 @@
-import * as THREE from 'https://unpkg.com/three@0.166.1/build/three.module.js';
-let yaw = 0;
+import * as THREE from "https://unpkg.com/three@0.166.1/build/three.module.js";let yaw = 0;
 let pitch = -0.2;const scene = new THREE.Scene();
 let flashlightOn = false;
 let health = 100;
