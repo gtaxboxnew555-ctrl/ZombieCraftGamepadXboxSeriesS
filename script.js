@@ -415,16 +415,7 @@ camera.position.y = 2;
 
 const keys = {};
 
-window.addEventListener("gamepadconnected", (e) => {
 
-    gamepad = e.gamepad;
-
-    console.log(
-        "Controller connected:",
-        gamepad.id
-    );
-
-});
 
 
 
@@ -1009,13 +1000,7 @@ function animate() {
 
     requestAnimationFrame(animate);
 
-    const pads = navigator.getGamepads();
-
-if (pads[0]) {
-
-    gamepad = pads[0];
-
-}
+   
 
 let speed = 0.1;
     if (keys["shift"]) speed = 0.15;
@@ -1042,48 +1027,7 @@ const oldZ = camera.position.z;
         camera.position.x += Math.cos(yaw) * speed;
         camera.position.z -= Math.sin(yaw) * speed;
     }
-if (gamepad) {
 
-    let leftX = gamepad.axes[0];
-let leftY = gamepad.axes[1];
-
-if (Math.abs(leftX) < 0.025) leftX = 0;
-if (Math.abs(leftY) < 0.025) leftY = 0;
-
-    camera.position.x +=
-        Math.cos(yaw) * leftX * 0.1;
-
-    camera.position.z -=
-        Math.sin(yaw) * leftX * 0.1;
-
-    camera.position.x -=
-        Math.sin(yaw) * leftY * 0.1;
-
-    camera.position.z -=
-        Math.cos(yaw) * leftY * 0.1;
-
-}if (gamepad) {
-
-    let rightX = gamepad.axes[2];
-let rightY = gamepad.axes[3];
-
-if (Math.abs(rightX) < 0.025) rightX = 0;
-if (Math.abs(rightY) < 0.025) rightY = 0;
-
-yaw -= rightX * 0.05;
-pitch -= rightY * 0.05;
-
-    pitch = Math.max(
-        -1.5,
-        Math.min(1.5, pitch)
-    );
-
-}
-   if (gamepad) {
-
-    console.log(gamepad.axes[0]);
-
-}
 
     
 
@@ -1099,17 +1043,7 @@ pitch -= rightY * 0.05;
 
 }
 
-if (
-    gamepad &&
-    gamepad.buttons[0].pressed &&
-    onGround &&
-    !flyMode
-) {
 
-    velocityY = 0.25;
-    onGround = false;
-
-}
 
 
 
@@ -1609,83 +1543,7 @@ function loadGame() {
 }
 
 
-if (gamepad) {
 
-    const lt = gamepad.buttons[6].pressed;
-
-    if (lt && !lastLT) {
-
-        buildMode = !buildMode;
-
-        console.log(
-            buildMode
-                ? "Build Mode ON"
-                : "Build Mode OFF"
-        );
-
-    }
-
-    lastLT = lt;
-
-}
-if (gamepad) {
-
-    const rt = gamepad.buttons[7].pressed;
-
-    if (rt && !lastRT) {
-
-        document.dispatchEvent(
-            new MouseEvent("click")
-        );
-
-    }
-
-    lastRT = rt;
-
-}
-if (gamepad) {
-
-    const lb = gamepad.buttons[4].pressed;
-    const rb = gamepad.buttons[5].pressed;
-
-    if (lb && !lastLB) {
-
-        selectedBlock = "wood";
-
-        console.log("Wood Selected");
-
-    }
-
-    if (rb && !lastRB) {
-
-        selectedBlock = "stone";
-
-        console.log("Stone Selected");
-
-    }
-
-    lastLB = lb;
-    lastRB = rb;
-
-}
-
-
-
-if (gamepad) {
-
-    console.log(
-        gamepad.axes[0],
-        gamepad.axes[1]
-    );
-
-    console.log(
-        "LX:", gamepad.axes[0],
-        "LY:", gamepad.axes[1],
-        "RX:", gamepad.axes[2],
-        "RY:", gamepad.axes[3]
-    );
-
-}
 
 loadGame();
 console.log("STARTING GAME");
