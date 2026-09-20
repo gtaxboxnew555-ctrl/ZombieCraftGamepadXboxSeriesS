@@ -35,6 +35,20 @@ const maxWallHeight = 4;
 const playerRadius = 0.4;
 const playerHeight = 2;
 
+document.getElementById("coords").textContent =
+    JSON.stringify(gamepad.axes);
+
+
+
+
+
+
+
+
+
+
+
+
 let gamepad = null;
 let lastLT = false;
 let lastRT = false;
@@ -1079,7 +1093,9 @@ const oldZ = camera.position.z;
         camera.position.x += Math.cos(yaw) * speed;
         camera.position.z -= Math.sin(yaw) * speed;
     }
-if (gamepad) {
+
+
+    if (gamepad) {
 
     let leftX = gamepad.axes[0];
 let leftY = gamepad.axes[1];
@@ -1101,8 +1117,8 @@ if (Math.abs(leftY) < 0.1) leftY = 0;
 
 }if (gamepad) {
 
-    let rightX = gamepad.axes[2];
-let rightY = gamepad.axes[3];
+    let rightX = gamepad.axes[4];
+let rightY = gamepad.axes[5];
 
 if (Math.abs(rightX) < 0.1) rightX = 0;
 if (Math.abs(rightY) < 0.1) rightY = 0;
